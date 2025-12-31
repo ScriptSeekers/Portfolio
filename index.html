@@ -3,20 +3,1117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arpit Vishwakarma | ScriptSeekers</title>
-    <link rel="icon" type="image/jpg" href="arpit.jpg">
+    
+    <!-- Mobile-specific meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#060812">
+    
+    <title>Arpit Vishwakarma | AI/ML Developer & Full-Stack Engineer</title>
+
     <!-- Fonts & Icons -->
     <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ---------------- CSS VARIABLES ---------------- */
+        :root {
+            --bg: #060812;
+            --bg-gradient: radial-gradient(ellipse at top, #12182a, #060812 70%);
+            --primary: #7f5cff;
+            --primary-light: #a28bff;
+            --secondary: #00d4ff;
+            --secondary-light: #5ce0ff;
+            --text: #e6e8ee;
+            --text-light: #ffffff;
+            --muted: #9aa0b4;
+            --muted-dark: #6b7280;
+            --card-bg: rgba(10, 14, 32, 0.7);
+            --card-border: rgba(255, 255, 255, 0.12);
+            --glow-primary: rgba(127, 92, 255, 0.4);
+            --glow-secondary: rgba(0, 212, 255, 0.3);
+            --font-heading: 'Clash Display', 'Space Grotesk', 'Segoe UI', sans-serif;
+            --font-body: 'Inter', 'SF Pro Display', -apple-system, sans-serif;
+            --transition-fast: 0.2s ease;
+            --transition-medium: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-radius-sm: 8px;
+            --border-radius-md: 14px;
+            --border-radius-lg: 20px;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.3);
+        }
+
+        /* RESET & BASE STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.7;
+            letter-spacing: 0.2px;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Prevent horizontal scrolling */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Fix for mobile viewport height */
+        @supports (-webkit-touch-callout: none) {
+            .hero {
+                min-height: -webkit-fill-available;
+            }
+        }
+
+        /* Safe area for notches and home indicators */
+        @supports (padding: max(0px)) {
+            body {
+                padding-left: min(0px, env(safe-area-inset-left));
+                padding-right: min(0px, env(safe-area-inset-right));
+            }
+            
+            .hero {
+                padding-top: max(6rem, env(safe-area-inset-top));
+            }
+            
+            footer {
+                padding-bottom: max(3rem, env(safe-area-inset-bottom));
+            }
+        }
+
+        ::selection {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* ---------------- TYPOGRAPHY ENHANCEMENTS ---------------- */
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            font-weight: 400;
+            color: var(--muted);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-fast);
+        }
+
+        /* ---------------- NAVIGATION ENHANCEMENTS ---------------- */
+        nav {
+            position: fixed;
+            width: 100%;
+            background: rgba(5, 8, 20, 0.85);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 1000;
+            transition: var(--transition-medium);
+        }
+
+        nav.scrolled {
+            background: rgba(5, 8, 20, 0.95);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--secondary);
+            bottom: 4px;
+            right: -12px;
+            animation: pulse 2s infinite;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--muted);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width var(--transition-medium);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-light);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        /* ---------------- HERO SECTION ENHANCEMENTS ---------------- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--glow-primary) 0%, transparent 70%);
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        .hero-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-text span {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-text span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            border-radius: 2px;
+            opacity: 0.5;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            max-width: 580px;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        /* ---------------- PROFESSIONAL BUTTON STYLES ---------------- */
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        /* Uniform button sizes */
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius-lg);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: none;
+            min-height: 56px; /* Professional button height */
+            min-width: 160px; /* Minimum width for consistency */
+            text-align: center;
+        }
+
+        /* Ensure all buttons have same size */
+        .btn.primary,
+        .btn.secondary,
+        .resume-dropdown .btn.primary,
+        form .btn.primary {
+            height: 56px;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000;
+            box-shadow: 0 6px 24px rgba(127, 92, 255, 0.3);
+            font-weight: 600;
+        }
+
+        .primary:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(127, 92, 255, 0.4);
+        }
+
+        .secondary {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
+            backdrop-filter: blur(10px);
+            font-weight: 600;
+        }
+
+        .secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Better touch feedback */
+        .btn, .cert-card, .social-link, .project-card {
+            -webkit-tap-highlight-color: rgba(127, 92, 255, 0.3);
+            touch-action: manipulation;
+        }
+
+        /* Form button styling */
+        form {
+            display: inline-flex;
+        }
+
+        form .btn {
+            width: 100%;
+            height: 56px;
+        }
+
+        /* ---------------- RESUME DROPDOWN PROFESSIONAL STYLES ---------------- */
+        .resume-dropdown {
+            position: relative;
+            display: inline-flex;
+            margin-top: 2rem;
+            width: auto;
+        }
+
+        .resume-dropdown .btn {
+            padding: 1rem 2.5rem 1rem 2rem;
+            min-width: 220px;
+            justify-content: space-between;
+        }
+
+        .resume-dropdown i {
+            transition: transform var(--transition-medium);
+            font-size: 0.9rem;
+        }
+
+        .resume-dropdown:hover i {
+            transform: rotate(180deg);
+        }
+
+        .resume-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--border-radius-md);
+            min-width: 100%;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-15px) scale(0.95);
+            transition: all var(--transition-medium);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-lg);
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .resume-menu a {
+            display: block;
+            padding: 1.2rem 1.5rem;
+            font-family: var(--font-body);
+            font-weight: 500;
+            color: var(--text);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition-fast);
+            font-size: 0.95rem;
+        }
+
+        .resume-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .resume-menu a:hover {
+            background: linear-gradient(90deg, rgba(127, 92, 255, 0.15), transparent);
+            color: var(--text-light);
+            padding-left: 2rem;
+        }
+
+        .resume-dropdown:hover .resume-menu {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+
+        /* ---------------- HERO IMAGE ENHANCEMENTS ---------------- */
+        .hero-image {
+            position: relative;
+            width: 360px;
+            height: 360px;
+            margin: 0 auto;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            z-index: 2;
+            position: relative;
+            border: 8px solid rgba(255, 255, 255, 0.08);
+            animation: float 6s ease-in-out infinite;
+            filter: grayscale(15%) contrast(1.1);
+            transition: filter var(--transition-medium);
+        }
+
+        .hero-image:hover img {
+            filter: grayscale(0%) contrast(1.05);
+        }
+
+        .glow-ring {
+            position: absolute;
+            inset: -25px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, var(--primary), var(--secondary), var(--primary));
+            filter: blur(25px);
+            opacity: 0.7;
+            animation: spin 8s linear infinite;
+            z-index: 1;
+        }
+
+        .glow-ring::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: conic-gradient(from 180deg, var(--secondary), var(--primary), var(--secondary));
+            filter: blur(30px);
+            opacity: 0.5;
+            animation: spinReverse 10s linear infinite;
+        }
+
+        /* ---------------- SECTIONS COMMON STYLES ---------------- */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        section h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        section p {
+            max-width: 760px;
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+
+        /* ---------------- ABOUT SECTION ---------------- */
+        #about {
+            padding-top: 4rem;
+        }
+
+        #about p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            border-left: 3px solid var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* ---------------- PROJECTS ENHANCEMENTS ---------------- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+            border: 1px solid var(--card-border);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1.2rem;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            transform: scaleY(0);
+            transition: transform var(--transition-medium);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(127, 92, 255, 0.3);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        /* ---------------- CERTIFICATES ENHANCEMENTS ---------------- */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .cert-card {
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.06),
+                rgba(255, 255, 255, 0.01)
+            );
+            border: 1px solid var(--card-border);
+            transition: all var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(127, 92, 255, 0.05), rgba(0, 212, 255, 0.05));
+            opacity: 0;
+            transition: opacity var(--transition-medium);
+        }
+
+        .cert-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .cert-card:hover::before {
+            opacity: 1;
+        }
+
+        .cert-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .certificate-platform {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .certificate-partner {
+            font-size: 0.9rem;
+            color: var(--muted);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ---------------- CONTACT SECTION ---------------- */
+        #contact p {
+            font-size: 1.3rem;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.5rem 2rem;
+            border-radius: var(--border-radius-lg);
+            display: inline-block;
+            border: 1px solid var(--card-border);
+            transition: var(--transition-medium);
+        }
+
+        #contact p:hover {
+            background: rgba(127, 92, 255, 0.05);
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        /* ---------------- SOCIAL LINKS ENHANCEMENTS ---------------- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.8rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--muted);
+            font-size: 1.5rem;
+            transition: all var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity var(--transition-medium);
+        }
+
+        .social-link i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-link:hover {
+            color: white;
+            transform: translateY(-5px);
+            border-color: transparent;
+            box-shadow: 0 8px 24px rgba(127, 92, 255, 0.3);
+        }
+
+        .social-link:hover::before {
+            opacity: 1;
+        }
+
+        /* ---------------- FOOTER ENHANCEMENTS ---------------- */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--muted-dark);
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        /* ---------------- ANIMATIONS & KEYFRAMES ---------------- */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes spinReverse {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* ---------------- RESPONSIVE DESIGN ---------------- */
+        @media (max-width: 1024px) {
+            .hero-wrapper {
+                gap: 3rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 3.2rem;
+            }
+            
+            .hero-buttons {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero-wrapper {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+            
+            .hero-text p {
+                margin: 0 auto 2.5rem;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-image {
+                order: -1;
+                margin-bottom: 2rem;
+            }
+            
+            .resume-dropdown {
+                margin: 2rem auto 0;
+            }
+            
+            section h2 {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-text p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                min-width: 280px; /* Consistent width on mobile */
+            }
+            
+            .project-grid,
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            /* Mobile specific improvements */
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.8rem 0.5rem;
+            }
+            
+            .hero-wrapper {
+                padding: 1rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+            
+            .hero-text p {
+                font-size: 1.1rem;
+                padding: 0 0.5rem;
+            }
+            
+            .hero-image {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .project-card, .cert-card {
+                min-height: 120px;
+                padding: 1.5rem;
+            }
+            
+            .cert-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            #contact p {
+                font-size: 1.1rem;
+                padding: 1rem;
+                word-break: break-word;
+            }
+            
+            /* Resume dropdown mobile fix */
+            .resume-dropdown {
+                width: 100%;
+                max-width: 280px;
+            }
+            
+            .resume-dropdown .btn {
+                width: 100%;
+                min-width: 100%;
+            }
+            
+            .resume-menu {
+                width: 100%;
+                left: 0;
+                right: 0;
+            }
+            
+            .resume-dropdown {
+                z-index: 100;
+            }
+
+            /* Mobile menu toggle */
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(5, 8, 20, 0.98);
+                backdrop-filter: blur(20px);
+                padding: 5rem 2rem 2rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 1rem;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                font-size: 1.2rem;
+                width: 100%;
+                max-width: 200px;
+            }
+            
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            /* Better text contrast and readability */
+            body {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            
+            p {
+                text-align: justify;
+                hyphens: auto;
+            }
+            
+            section p {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+            
+            /* Improve contrast for outdoor use */
+            .hero-text span {
+                -webkit-text-fill-color: #7f5cff;
+                background: none;
+            }
+
+            /* Optimize image for mobile */
+            .hero-image img {
+                border-width: 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2.4rem;
+            }
+            
+            .hero-image {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+            
+            section h2 {
+                font-size: 2rem;
+            }
+
+            /* Extra small devices */
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-image {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .glow-ring {
+                inset: -15px;
+                filter: blur(15px);
+            }
+            
+            section {
+                padding: 3rem 1rem;
+            }
+            
+            .logo {
+                font-size: 1.4rem;
+            }
+            
+            .logo::after {
+                width: 6px;
+                height: 6px;
+                right: -10px;
+            }
+            
+            .social-links {
+                gap: 1rem;
+            }
+            
+            .social-link {
+                width: 48px;
+                height: 48px;
+                font-size: 1.3rem;
+            }
+            
+            /* Button adjustments for very small screens */
+            .btn {
+                min-width: 250px;
+                max-width: 250px;
+                padding: 1rem 1.5rem;
+                font-size: 0.95rem;
+            }
+            
+            .hero-buttons .btn {
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .btn {
+                min-width: 220px;
+                max-width: 220px;
+                padding: 0.9rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .hero-buttons .btn {
+                width: 220px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
 <nav>
     <div class="nav-container">
         <div class="logo">ScriptSeekers</div>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </button>
         <div class="nav-links">
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
@@ -27,9 +1124,8 @@
 
 <section class="hero">
     <div class="hero-wrapper">
-
         <div class="hero-text">
-            <h1>Hi, I’m <span>Arpit Vishwakarma</span></h1>
+            <h1>Hi, I'm <span>Arpit Vishwakarma</span></h1>
             <p>AI/ML Developer & Full-Stack Engineer building serious systems not tutorial projects.</p>
 
             <div class="hero-buttons">
@@ -37,25 +1133,25 @@
                 <a href="#contact" class="btn secondary">Contact</a>
                 <form action="https://www.google.com/search" method="get" target="_blank">
                     <input type="hidden" name="q" value="Arpit Vishwakarma ScriptSeekers">
-                        <button type="submit" class="btn primary">Search on Google</button>
+                    <button type="submit" class="btn primary">Search on Google</button>
                 </form>
             </div>
+            
+            <div class="resume-dropdown">
+                <button class="btn primary">
+                    Download Resume <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="resume-menu">
+                    <a href="resume-full.pdf" download>Full Resume (PDF)</a>
+                    <a href="resume-selected.pdf" download>Selected Resume (PDF)</a>
+                </div>
+            </div>
         </div>
+        
         <div class="hero-image">
             <div class="glow-ring"></div>
-            <img src="arpit.jpg" alt="Arpit Vishwakarma">
-            </div>
-            <div class="resume-dropdown">
-            <button class="btn primary">
-                Download Resume <i class="fas fa-chevron-down"></i>
-            </button>
-            <div class="resume-menu">
-                <a href="resume-full.pdf" download>Full Resume</a>
-                <a href="resume-selected.pdf" download>Selected Resume</a>
-            </div>
-            
+            <img src="arpit.jpg" alt="Arpit Vishwakarma - AI/ML Developer">
         </div>
-
     </div>
 </section>
 
@@ -76,7 +1172,7 @@
         <div class="project-card">Object Detection</div>
         <div class="project-card">Image Analysis</div>
         <div class="project-card">Action Reflection</div>
-        <div class="project-card">Car PricePrediction</div>
+        <div class="project-card">Car Price Prediction</div>
         <div class="project-card">Disease Prediction</div>
         <div class="project-card">AI-Based Study Planner</div>
     </div>
@@ -136,10 +1232,170 @@
         <a href="https://www.instagram.com/arpitvish2701?igsh=MWI1aXZxdHA0a3Bzcw%3D%3D&utm_source=qr" class="social-link"><i class="fab fa-instagram"></i></a>
     </div>
 </div>
+
 <footer>
     <p style="color: var(--text-muted);">&copy; 2025 Arpit Vishwakarma (ScriptSeekers). All rights reserved.</p>
 </footer>
-<script src="script.js"></script>
+
+<script>
+    // Simple scroll reveal (clean, no libraries)
+    const revealElements = document.querySelectorAll(".reveal");
+
+    function revealOnScroll() {
+        revealElements.forEach(el => {
+            const top = el.getBoundingClientRect().top;
+            if (top < window.innerHeight - 100) {
+                el.style.opacity = 1;
+                el.style.transform = "translateY(0)";
+            }
+        });
+    }
+
+    revealElements.forEach(el => {
+        el.style.opacity = 0;
+        el.style.transform = "translateY(40px)";
+        el.style.transition = "0.8s ease";
+    });
+
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
+
+    // Certificate window opener
+    function openCenteredWindow(url) {
+        const width = 320;
+        const height = 590;
+        const left = (screen.width / 2) - (width / 2);
+        const top = (screen.height / 2) - (height / 2);
+        window.open(
+            url,
+            "certificatePopup",
+            `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes`
+        );
+    }
+
+    // Mobile menu toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navLinks.classList.toggle('active');
+            // Toggle icon between bars and times
+            const icon = mobileMenuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!navLinks.contains(event.target) && !mobileMenuToggle.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    }
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+
+    // Prevent form submission from refreshing page
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const input = form.querySelector('input[name="q"]');
+            if (input) {
+                const url = `https://www.google.com/search?q=${encodeURIComponent(input.value)}`;
+                window.open(url, "_blank");
+            }
+        });
+    });
+
+    // Resume dropdown functionality
+    const resumeDropdown = document.querySelector('.resume-dropdown');
+    if (resumeDropdown) {
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!resumeDropdown.contains(event.target)) {
+                const resumeMenu = document.querySelector('.resume-menu');
+                if (resumeMenu) {
+                    resumeMenu.style.opacity = 0;
+                    resumeMenu.style.pointerEvents = 'none';
+                    resumeMenu.style.transform = 'translateY(-15px) scale(0.95)';
+                }
+            }
+        });
+
+        // Prevent dropdown from closing when clicking inside
+        resumeDropdown.addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+    }
+
+    // Ensure all buttons have equal height on load
+    window.addEventListener('load', () => {
+        const buttons = document.querySelectorAll('.btn');
+        let maxHeight = 0;
+        
+        // Find the maximum height
+        buttons.forEach(btn => {
+            const height = btn.offsetHeight;
+            if (height > maxHeight) {
+                maxHeight = height;
+            }
+        });
+        
+        // Apply maximum height to all buttons
+        buttons.forEach(btn => {
+            btn.style.height = `${maxHeight}px`;
+        });
+    });
+
+    // Handle window resize for button consistency
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            const buttons = document.querySelectorAll('.btn');
+            let maxHeight = 0;
+            
+            buttons.forEach(btn => {
+                btn.style.height = 'auto'; // Reset height
+                const height = btn.offsetHeight;
+                if (height > maxHeight) {
+                    maxHeight = height;
+                }
+            });
+            
+            buttons.forEach(btn => {
+                btn.style.height = `${maxHeight}px`;
+            });
+        }, 250);
+    });
+</script>
 </body>
 </html>
-
